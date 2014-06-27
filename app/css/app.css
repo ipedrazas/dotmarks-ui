@@ -1,0 +1,153 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+  content: "";
+  padding: 0;
+}
+
+.tags{
+ margin-left: 250px;
+}
+
+.tag{
+  margin-left: 5px;
+  color: white;
+  margin-bottom: 5px;
+  background-color: rgb(173, 200, 224);
+  padding: 3px;
+  padding-right: 5px;
+  padding-left: 5px;
+  font-size: 0.6em;
+}
+
+.atag{
+  margin-left: 5px;
+  color: white;
+  margin-bottom: 5px;
+  background-color: rgb(238, 185, 90);
+  padding: 3px;
+  padding-right: 5px;
+  padding-left: 5px;
+  font-size: 0.6em;
+}
+
+.urlTitle{
+  margin-bottom: 0;
+}
+
+.dotMarkData{
+  margin-left: 20px;
+}
+
+.tagCount-info{
+  background-color: #1A99C2;
+  float: right;
+  margin-left: 10px;
+}
+.tagCount-warning{
+  background-color: #D67E01;
+  float: right;
+  margin-left: 10px;
+}
+#tagList li{
+  margin-bottom: 5px;
+  height: 32px;
+}
+
+#tagList a{
+  width: 135px;
+}
+
+.searchbar{
+  font-size: 3em;
+  color: rgb(223, 218, 218);
+  letter-spacing: -0.02em;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1.2;
+  margin-left: 70px;
+  width: 650px;
+}
+
+.rightCol{
+  margin-left: 50px;
+}
+
+.dotMarkData{
+  padding-left: 10px;
+  font-size: 1.4em;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.dotAction{
+  font-size: 1.3em;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.terminal{
+  width: 800px;
+  height: 600px;
+  background-color: black;
+  color: rgb(0, 238, 0);
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.2em;
+  margin: 25px;
+}
+
+.sideSubTitle{
+  padding-top: 40px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.loginBox{
+  padding: 35px;
+  width: 30%;
+  margin: 0 auto;
+  border: 1px solid black;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+
+.num_views{
+  padding-left: 10px;
+  padding-right: 10px;
+ -webkit-border-radius: 35px;
+  -moz-border-radius: 35px;
+  border-radius: 35px;
+  color: rgb(49, 107, 180);
+  border: 1px solid rgb(49, 107, 180);
+  margin-left: 10px;
+  font-size: 0.7em;
+}
+
+.pagination{
+  padding-right: 25px;
+  padding-left: 25px;
+}

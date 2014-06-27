@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-md-1">
+
+        <a type="button" class="btn btn-primary" href="#/bulk_import">Import</a>
+        <a type="button" class="btn btn-primary" href="#/upload_html">Upload</a>
+
+        <h2 class="sideSubTitle">Tags</h2>
+        <ul class="list-group" id="tagList">
+          <li ng-repeat="elem in tags">
+            <a href='#/dotmarks?tag={{elem.label}}' class="btn btn-info tag">
+                <span class="badge tagCount-info">{{elem.count}}</span>
+                {{elem.label}}
+            </a>
+          </li>
+        </ul>
+
+        <h2 class="sideSubTitle">Categories</h2>
+        <ul class="list-group" id="tagList">
+          <li ng-repeat="elem in atags">
+            <a href='#/dotmarks?tag={{elem.label}}' class="btn btn-warning tag">
+                <span class="badge tagCount-warning">{{elem.count}}</span>
+                {{elem.label}}
+            </a>
+          </li>
+        </ul>
+    </div>
+
+    <div class="col-md-10 rightCol">
+        <div class="row">
+            <form>
+                <h1 class="searchbar" contenteditable="true" onclick="document.execCommand('selectAll',false,null)" typing >...start typing to search</h1>
+            </form>
+        </div>
+        <div class="row">
+            <ul class="pagination pagination-centered">
+                <li ng-if="pagination.prev" class="pagination previous"><a href="#{{pagination.prev.href}}">Prev</a></li>
+                <li ng-if="pagination.next" class="pagination next"><a href="#{{pagination.next.href}}">Next</a></li>
+                <li ng-if="pagination.last" class="pagination last"><a href="#{{pagination.last.href}}">Last</a></li>
+            </ul>
+
+        </div>
+
+        <div class="row">
+            <div ng-repeat="dotmark in dotmarks">
+                <h2 class="urlTitle">
+                    <a href="{{dotmark.url}}"  target="_blank">{{dotmark.title}}</a>
+                </h2>
+                    <span class="num_views" ng-if="dotmark.views">{{dotmark.views}}</span>  <a href="{{dotmark.url}}" class="dotAction" target="_blank">{{dotmark.url}}</a>
+                <div class="dotMarkData row">
+                    <div class="dotActions left ">
+                        <span class="glyphicon glyphicon-star-empty " ng-click="starDotMark(dotmark._id, true)" ng-hide="dotmark.star"></span>
+                        <span class="glyphicon glyphicon-star " ng-click="starDotMark(dotmark._id, false)" ng-show="dotmark.star"></span>
+                        <a href="#/dotmarks?id={{dotmark._id}}"><span class="glyphicon glyphicon-pencil "  ></span></a>
+
+                        <ul class="list-inline tags right ">
+                            <li ng-repeat="tag in dotmark.tags" ><a href="#" class="tag">{{tag}}</a></li>
+                            <li ng-repeat="atag in dotmark.atags"><a href="#" class="atag">{{atag}}</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <ul class="pagination pagination-centered">
+                <li ng-if="pagination.prev" class="previous"><a href="#{{pagination.prev.href}}">Prev</a></li>
+                <li ng-if="pagination.next" class="next"><a href="#{{pagination.next.href}}">Next</a></li>
+                <li ng-if="pagination.last" class="last pull-right"><a href="#{{pagination.last.href}}">Last</a></li>
+            </ul>
+
+        </div>
+    </div>
+</div>
