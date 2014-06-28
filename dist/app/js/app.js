@@ -8,11 +8,10 @@ angular.module('dotApp', ['ngRoute','ui.bootstrap', 'LocalStorageModule', 'angul
           .when('/dotmarks', {templateUrl: 'partials/dotmarks.html', controller: 'dotMarkController'})
           .when('/bulk_import', {templateUrl: 'partials/bulk_import.html', controller: 'terminalCtl'})
           .when('/upload_html', {templateUrl: 'partials/upload_html.html', controller: 'terminalCtl'})
-          .when('/home', {templateUrl: 'partials/dotmarks.html', controller: 'dotMarkController'})
           .when('/edit', {templateUrl: 'partials/editDotMark.html', controller: 'dotMarkController'})
           .when('/applications', {templateUrl: 'partials/applications.html', controller: 'appsCtl'})
           .when('/settings', {templateUrl: 'partials/settings.html', controller: 'settingsCtl'})
-		.otherwise({redirectTo: '/home'});
+		.otherwise({redirectTo: '/dotmarks'});
 
 }]);
 

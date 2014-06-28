@@ -196,12 +196,6 @@ angular.module('dotApp').controller('dotMarkController',
 
 
 
-    if(token == undefined){
-        $location.path("/signin");
-    }else{
-        $rootScope.currentuser = username;
-    }
-
     if($routeParams.tag !== undefined){
         $scope.getTags();
     }else if($routeParams.id !== undefined){

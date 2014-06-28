@@ -1,4 +1,4 @@
-var BASE_URL = "http://api.dotmarks.dev/";
+var BASE_URL = "http://localhost:5000/";
 
 var dotmarksUrl = BASE_URL + "dotmarks";
 var auditUrl =  BASE_URL + "logs/";
