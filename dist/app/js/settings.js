@@ -1,11 +1,10 @@
-var BASE_URL = "http://localhost:5000/";
+var BASE_URL = "https://api.dotmarks.net/";
 
 var dotmarksUrl = BASE_URL + "dotmarks";
 var auditUrl =  BASE_URL + "logs/";
 var authUrl = BASE_URL + "users/";
 var mediaUrl = BASE_URL + "attachments/";
-var passwordUrl = "http://api.dotmarks.dev/";
-// var passwordUrl ="http://dotmarks.dev:5000/"
+
 
 
 
