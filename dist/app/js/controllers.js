@@ -57,12 +57,17 @@ angular.module('dotApp').controller('terminalCtl', [
     };
 
     $scope.bulkImport = function(){
+        var username = 'anonymous';
+        if($scope.username){
+            username = $scope.username;
+        }
+
         var params = new Array();
         var data = $scope.terminal;
         var urls = data.split("\n");
         _.each(urls, function(el) {
           var o = {};
-          // o['username'] = localStorageService.get('username');
+          o['username'] = username;
           o['url'] = el;
           params.push(o);
         });
