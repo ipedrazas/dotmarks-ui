@@ -40,8 +40,8 @@ Date.prototype.yyyymmdd = function() {
 /* Controllers */
 
 angular.module('dotApp').controller('terminalCtl', [
-    '$scope', 'api', '$routeParams', 'localStorageService', '$upload', '$http',
-    function ($scope, api, $routeParams, localStorageService,  $upload, $http){
+    '$scope', 'api', '$routeParams', '$upload', '$http',
+    function ($scope, api, $routeParams, $upload, $http){
 
     var parseResponse = function(element, count){
         if(element._status === 'OK'){
@@ -86,7 +86,6 @@ angular.module('dotApp').controller('terminalCtl', [
 
     $scope.onFileSelect = function($files) {
         //$files: an array of files selected, each file has name, size, and type.
-        $http.defaults.headers.common['Authorization'] = 'Basic ' + localStorageService.get('token');
         for (var i = 0; i < $files.length; i++) {
             var file = $files[i];
             $scope.upload = $upload.upload({
@@ -114,22 +113,6 @@ angular.module('dotApp').controller('terminalCtl', [
             It could also be used to monitor the progress of a normal http post/put request with large data*/
             // $scope.upload = $upload.http({...})  see 88#issuecomment-31366487 for sample code.
     };
-
-}]);
-
-angular.module('dotApp').controller('settingsCtl',
-    ['$scope', '$rootScope', '$location', 'api', 'appaudit', '$routeParams', 'localStorageService',
-     function ($scope, $rootScope, $location, api, appaudit, $routeParams, localStorageService) {
-
-        $scope.updateSettings = function(){
-            log($scope.password);
-            log($scope.repassword);
-            if($scope.password == $scope.repassword){
-                log('passwords match');
-            }else{
-                $scope.errors = "Ugh! Passwords are different!";
-            }
-        };
 
 }]);
 
