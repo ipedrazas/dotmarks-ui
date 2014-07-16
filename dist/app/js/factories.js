@@ -31,7 +31,7 @@ angular.module('dotApp').factory('api', ['$http', 'localStorageService', functio
     return {
         getDotMarksEntries: function(params) {
             var username = localStorageService.get('username');
-            var dest = dotmarksUrl + '?sort=[("views",-1)]&d=' + Date.now();
+            var dest = dotmarksUrl + '?sort=[("views",-1),("_updated",-1)]&d=' + Date.now();
             if(params.page !== undefined){
                 return $http.get(dest + "&page=" + params.page);
             }else{
