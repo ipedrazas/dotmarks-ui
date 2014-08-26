@@ -1,13 +1,13 @@
 
 
-angular.module('dotApp').factory('appaudit', ['$http', 'localStorageService', function($http, localStorageService){
+angular.module('dotApp').factory('appaudit', ['$http', function($http){
     return {
         clickDotMark: function(id){
             var o = {};
             o['user'] = 'ivan';
             o['source_id'] = id;
             o['action'] = 'click';
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + localStorageService.get('token');
+            // $http.defaults.headers.common['Authorization'] = 'Basic ' + localStorageService.get('token');
             return $http.post( auditUrl, JSON.stringify(o), config);
         },
         starDotMark: function(id, star){
@@ -16,7 +16,7 @@ angular.module('dotApp').factory('appaudit', ['$http', 'localStorageService', fu
             o['source_id'] = id;
             o['action'] = 'star';
             o['value'] = '' + star;
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + localStorageService.get('token');
+            // $http.defaults.headers.common['Authorization'] = 'Basic ' + localStorageService.get('token');
             return $http.post( auditUrl, JSON.stringify(o));
         },
 
@@ -24,13 +24,17 @@ angular.module('dotApp').factory('appaudit', ['$http', 'localStorageService', fu
     };
 }]);
 
-angular.module('dotApp').factory('api', ['$http', 'localStorageService', function($http, localStorageService) {
+angular.module('dotApp').factory('api', ['$http', function($http) {
 
 
 
     return {
+
+        getTags: function(params){
+            return $http.get(TAGS_URL+ '?sort=[("value",-1))';
+        },
+
         getDotMarksEntries: function(params) {
-            var username = localStorageService.get('username');
             var dest = dotmarksUrl + '?sort=[("views",-1),("_updated",-1)]&d=' + Date.now();
             if(params.page !== undefined){
                 return $http.get(dest + "&page=" + params.page);
@@ -47,7 +51,7 @@ angular.module('dotApp').factory('api', ['$http', 'localStorageService', functio
                 },
                 responseType: "application/json",
             };
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + localStorageService.get('token');
+            // $http.defaults.headers.common['Authorization'] = 'Basic ' + localStorageService.get('token');
             return $http.post(dotmarksUrl, entry, config);
         },
 
@@ -63,7 +67,7 @@ angular.module('dotApp').factory('api', ['$http', 'localStorageService', functio
 
         },
         searchDotMarks: function(query){
-            var username = localStorageService.get('username');
+            // var username = localStorageService.get('username');
             var filter = "?where={\"$or\": [{\"url\":{\"$regex\":\".*" + query + ".*\"}},{\"title\":{\"$regex\":\".*" + query + ".*\",\"$options\":\"i\"}}]}";
             return $http.get(dotmarksUrl + filter);
         },
@@ -80,7 +84,7 @@ angular.module('dotApp').factory('api', ['$http', 'localStorageService', functio
                 },
                 responseType: "application/json",
             };
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + localStorageService.get('token');
+            // $http.defaults.headers.common['Authorization'] = 'Basic ' + localStorageService.get('token');
             return $http.post(dotmarksUrl + "/" + dotmark._id, dotmark, config);
         }
     };

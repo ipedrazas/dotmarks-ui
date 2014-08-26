@@ -93,7 +93,7 @@ angular.module('dotApp').controller('terminalCtl', [
             method: 'POST',
             // headers: {'header-key': 'header-value'},
             // withCredentials: true,
-            data: {user: localStorageService.get('username')},
+            // data: {user: localStorageService.get('username')},
             file: file, // or list of files: $files for html5 only
             /* set the file formData name ('Content-Desposition'). Default is 'file' */
             //fileFormDataName: myFile, //or a list of names for multiple files (html5).
@@ -117,11 +117,8 @@ angular.module('dotApp').controller('terminalCtl', [
 }]);
 
 angular.module('dotApp').controller('dotMarkController',
-    ['$scope', '$rootScope', '$location', 'api', 'appaudit', '$routeParams', 'localStorageService',
-     function ($scope, $rootScope, $location, api, appaudit, $routeParams, localStorageService) {
-
-    var token = localStorageService.get('token');
-    var username = localStorageService.get('username');
+    ['$scope', '$rootScope', '$location', 'api', 'appaudit', '$routeParams',
+     function ($scope, $rootScope, $location, api, appaudit, $routeParams) {
 
     var callbackHandler = function(data){
         var elems = new Array();
@@ -136,7 +133,7 @@ angular.module('dotApp').controller('dotMarkController',
         });
 
         $scope.dotmarks = elems;
-        $scope.tags = reduce(etags);
+        $scope.etags = reduce(etags);
         $scope.atags = reduce(atags);
 
         var pagination = {};
@@ -182,7 +179,7 @@ angular.module('dotApp').controller('dotMarkController',
         });
     }
 
-
+    $scope.tags = api.getTags();
 
     if($routeParams.tag !== undefined){
         $scope.getTags();
