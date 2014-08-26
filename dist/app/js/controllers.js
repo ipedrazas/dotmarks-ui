@@ -179,7 +179,12 @@ angular.module('dotApp').controller('dotMarkController',
         });
     }
 
-    $scope.tags = api.getTags();
+    var ttags = api.getTags().success(function(data){
+            log(data);
+            $scope.tags = data;
+        });
+
+
 
     if($routeParams.tag !== undefined){
         $scope.getTags();

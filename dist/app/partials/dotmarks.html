@@ -6,7 +6,7 @@
 
         <h2 class="sideSubTitle">Tags</h2>
         <ul class="list-group" id="tagList">
-          <li ng-repeat="elem in tags">
+          <li ng-repeat="elem in tags._items">
             <a href='#/dotmarks?tag={{elem._id}}' class="btn btn-info tag">
                 <span class="badge tagCount-info">{{elem.value}}</span>
                 {{elem._id}}

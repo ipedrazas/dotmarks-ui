@@ -31,7 +31,8 @@ angular.module('dotApp').factory('api', ['$http', function($http) {
     return {
 
         getTags: function(params){
-            return $http.get(TAGS_URL+ '?sort=[("value",-1))';
+            return  $http.get(TAGS_URL+ '?sort=[("value",-1)]');
+
         },
 
         getDotMarksEntries: function(params) {
