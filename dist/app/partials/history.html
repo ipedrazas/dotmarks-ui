@@ -42,7 +42,7 @@
                     var entry = {'_id': item._id.hours, 'value': item.value};
                     dataPerHour.push(entry);
                 });
-                writeGraphBar(dataPerHour);
+                writeGraphBar(dataPerHour, "hours");
             });
         $.getJSON( daysAnalyticsAPI)
             .done(function( data ) {
@@ -50,7 +50,7 @@
                     var entry = {'_id': item._id.day, 'value': item.value};
                     dataPerDay.push(entry);
                 });
-                writeGraphBar(dataPerDay);
+                writeGraphBar(dataPerDay, "days");
             });
         $.getJSON( weekdaysAnalyticsAPI)
             .done(function( data ) {
@@ -58,7 +58,7 @@
                     var entry = {'_id': item._id.weekday, 'value': item.value};
                     dataPerWeekDay.push(entry);
                 });
-                writeGraphBar(dataPerWeekDay);
+                writeGraphBar(dataPerWeekDay, "weekdays");
             });
         $.getJSON( domainsAnalyticsAPI)
             .done(function( data ) {
@@ -66,11 +66,11 @@
                     var entry = {'_id': item._id.url, 'value': item.value};
                     dataPerDomain.push(entry);
                 });
-                writeGraphBar(dataPerDomain);
+                writeGraphBar(dataPerDomain, "urls");
             });
     })();
 
-    function writeGraphBar(data){
+    function writeGraphBar(data, divId){
         var margin = {top: 20, right: 20, bottom: 70, left: 40},
                 width = 600 - margin.left - margin.right,
                 height = 300 - margin.top - margin.bottom;
@@ -88,7 +88,7 @@
                 .orient("left")
                 .ticks(10);
 
-            var svg = d3.select("body").append("svg")
+            var svg = d3.select("#"+divId).append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
               .append("g")
@@ -134,4 +134,15 @@
     </script>
 
 <div class="row">
+  <h1>By Days</h1>
+  <div id="days"></div>
+</div>
+<div class="row">
+  <div id="hours"></div>
+</div>
+<div class="row">
+  <div id="weekdays"></div>
+</div>
+<div class="row">
+  <div id="urls"></div>
 </div>

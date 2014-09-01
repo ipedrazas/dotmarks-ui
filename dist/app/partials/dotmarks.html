@@ -30,6 +30,7 @@
             <form>
                 <h1 class="searchbar" contenteditable="true" onclick="document.execCommand('selectAll',false,null)" typing >...start typing to search</h1>
             </form>
+
         </div>
         <div class="row">
             <ul class="pagination pagination-centered">
@@ -37,7 +38,7 @@
                 <li ng-if="pagination.next" class="pagination next"><a href="#{{pagination.next.href}}">Next</a></li>
                 <li ng-if="pagination.last" class="pagination last"><a href="#{{pagination.last.href}}">Last</a></li>
             </ul>
-
+<span  class="glyphicon glyphicon-plus " ng-click="add_link=!add_link">Add new Url</span> <span class="searchbar" contenteditable="true" onclick="document.execCommand('selectAll',false,null)" ng-show="add_link" >Add a new url</span>
         </div>
 
         <div class="row">
