@@ -1,0 +1,137 @@
+<script type="text/javascript" src="assets/js/lib/jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="assets/js/lib/d3/d3.v3.js"></script>
+<style>
+
+  .axis {
+      font: 10px sans-serif;
+  }
+
+  .axis path,
+  .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+  }
+
+</style>
+
+
+<script type="text/javascript">
+
+    function getUrlVar(key){
+        var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search);
+        return result && unescape(result[1]) || "";
+    }
+
+
+    (function() {
+        var dataPerHour = new Array();
+        var dataPerDay = new Array();
+        var dataPerWeekDay = new Array();
+        var dataPerDomain = new Array();
+        var user = getUrlVar("u");
+        var ANALYTICS = "https://api.dotmarks.net/analytics/";
+        var hoursAnalyticsAPI = ANALYTICS + "hours?where=_id.user==" + user;
+        var daysAnalyticsAPI = ANALYTICS + "days?max_results=50&where=_id.user==" + user;
+        var weekdaysAnalyticsAPI = ANALYTICS + "weekdays?where=_id.user==" + user;
+        var domainsAnalyticsAPI = ANALYTICS + "domain?sort=[('value',-1)]&where=_id.user==" + user;
+
+        $.getJSON( hoursAnalyticsAPI)
+            .done(function( data ) {
+                $.each( data._items, function( i, item ) {
+                    var entry = {'_id': item._id.hours, 'value': item.value};
+                    dataPerHour.push(entry);
+                });
+                writeGraphBar(dataPerHour);
+            });
+        $.getJSON( daysAnalyticsAPI)
+            .done(function( data ) {
+                $.each( data._items, function( i, item ) {
+                    var entry = {'_id': item._id.day, 'value': item.value};
+                    dataPerDay.push(entry);
+                });
+                writeGraphBar(dataPerDay);
+            });
+        $.getJSON( weekdaysAnalyticsAPI)
+            .done(function( data ) {
+                $.each( data._items, function( i, item ) {
+                    var entry = {'_id': item._id.weekday, 'value': item.value};
+                    dataPerWeekDay.push(entry);
+                });
+                writeGraphBar(dataPerWeekDay);
+            });
+        $.getJSON( domainsAnalyticsAPI)
+            .done(function( data ) {
+                $.each( data._items, function( i, item ) {
+                    var entry = {'_id': item._id.url, 'value': item.value};
+                    dataPerDomain.push(entry);
+                });
+                writeGraphBar(dataPerDomain);
+            });
+    })();
+
+    function writeGraphBar(data){
+        var margin = {top: 20, right: 20, bottom: 70, left: 40},
+                width = 600 - margin.left - margin.right,
+                height = 300 - margin.top - margin.bottom;
+
+            var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+
+            var y = d3.scale.linear().range([height, 0]);
+
+            var xAxis = d3.svg.axis()
+                .scale(x)
+                .orient("bottom");
+
+            var yAxis = d3.svg.axis()
+                .scale(y)
+                .orient("left")
+                .ticks(10);
+
+            var svg = d3.select("body").append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+              .append("g")
+                .attr("transform",
+                      "translate(" + margin.left + "," + margin.top + ")");
+
+
+              x.domain(data.map(function(d) { return d._id; }));
+              y.domain([0, d3.max(data, function(d) { return d.value; })]);
+
+              svg.append("g")
+                  .attr("class", "x axis")
+                  .attr("transform", "translate(0," + height + ")")
+                  .call(xAxis)
+                .selectAll("text")
+                  .style("text-anchor", "end")
+                  .attr("dx", "-.8em")
+                  .attr("dy", "-.55em")
+                  .attr("transform", "rotate(-90)" );
+
+              svg.append("g")
+                  .attr("class", "y axis")
+                  .call(yAxis)
+                .append("text")
+                  .attr("transform", "rotate(-90)")
+                  .attr("y", 6)
+                  .attr("dy", ".71em")
+                  .style("text-anchor", "end")
+                  .text("Links");
+
+              svg.selectAll("bar")
+                  .data(data)
+                .enter().append("rect")
+                  .style("fill", "steelblue")
+                  .attr("x", function(d) { return x(d._id); })
+                  .attr("width", x.rangeBand())
+                  .attr("y", function(d) { return y(d.value); })
+                  .attr("height", function(d) { return height - y(d.value); });
+    }
+
+
+
+    </script>
+
+<div class="row">
+</div>
