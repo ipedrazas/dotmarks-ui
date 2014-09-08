@@ -179,6 +179,30 @@ angular.module('dotApp').controller('dotMarkController',
         });
     }
 
+    $scope.addDotMark = function(){
+        log("addDotMark");
+        log($scope.newDotMark);
+        var elem = {}
+
+        if($scope.newDotMark.url!==undefined){
+            elem['url'] = $scope.newDotMark.url;
+            if($scope.newDotMark!==undefined){
+                elem['title'] = $scope.newDotMark.title;
+            }
+            var tags = $scope.newDotMark.tags.toLowerCase().split(" ");
+            if(tags.length >= 1){
+                if(tags[0].length > 1){
+                    elem['tags'] = tags;
+                }
+            }
+            api.saveDotMark(elem).success(function(data){
+                log(data);
+            });
+        }else{
+            return -1
+        }
+    }
+
     var ttags = api.getTags().success(function(data){
             log(data);
             $scope.tags = data;

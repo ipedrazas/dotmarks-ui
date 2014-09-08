@@ -53,7 +53,7 @@ angular.module('dotApp').factory('api', ['$http', function($http) {
                 responseType: "application/json",
             };
             // $http.defaults.headers.common['Authorization'] = 'Basic ' + localStorageService.get('token');
-            return $http.post(dotmarksUrl, entry, config);
+            return $http.post(dotmarksUrl, JSON.stringify(entry), config);
         },
 
         getDotMarksByTag: function(tag){

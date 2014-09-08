@@ -1,8 +1,10 @@
 <div class="row">
     <div class="col-md-1">
 
+    <!--
         <a type="button" class="btn btn-primary" href="#/bulk_import">Import</a>
         <a type="button" class="btn btn-primary" href="#/upload_html">Upload</a>
+    -->
 
         <h2 class="sideSubTitle">Tags</h2>
         <ul class="list-group" id="tagList">
@@ -13,7 +15,7 @@
             </a>
           </li>
         </ul>
-
+<!--
         <h2 class="sideSubTitle">Categories</h2>
         <ul class="list-group" id="tagList">
           <li ng-repeat="elem in atags">
@@ -23,14 +25,50 @@
             </a>
           </li>
         </ul>
+-->
     </div>
 
     <div class="col-md-10 rightCol">
         <div class="row">
-            <form>
-                <h1 class="searchbar" contenteditable="true" onclick="document.execCommand('selectAll',false,null)" typing >...start typing to search</h1>
+            <form class="actionBar">
+                <span class="action searchbar" contenteditable="true" onclick="document.execCommand('selectAll',false,null)" typing >
+                    ...start typing to search
+                </span>
+                <span  class="glyphicon glyphicon-plus action adddotMark" ng-click="add_link=!add_link" data-toggle="modal" data-target="#adddotMark"></span>
             </form>
-
+            <div class="modal fade" id="adddotMark" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add new dotMark</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <div class="input-group-lg">
+                              <input type="text" class="form-control" placeholder="Title" ng-model="newDotMark.title">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group-lg">
+                              <input type="text" class="form-control" placeholder="Url" ng-model="newDotMark.url">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group-lg">
+                              <input type="text" class="form-control" placeholder="Tags" ng-model="newDotMark.tags">
+                            </div>
+                        </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="addDotMark()" data-dismiss="modal">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
         <div class="row">
             <ul class="pagination pagination-centered">
@@ -38,7 +76,9 @@
                 <li ng-if="pagination.next" class="pagination next"><a href="#{{pagination.next.href}}">Next</a></li>
                 <li ng-if="pagination.last" class="pagination last"><a href="#{{pagination.last.href}}">Last</a></li>
             </ul>
+            <!--
 <span  class="glyphicon glyphicon-plus " ng-click="add_link=!add_link">Add new Url</span> <span class="searchbar" contenteditable="true" onclick="document.execCommand('selectAll',false,null)" ng-show="add_link" >Add a new url</span>
+-->
         </div>
 
         <div class="row">
@@ -54,8 +94,10 @@
                         <a href="#/dotmarks?id={{dotmark._id}}"><span class="glyphicon glyphicon-pencil "  ></span></a>
 
                         <ul class="list-inline tags right ">
-                            <li ng-repeat="tag in dotmark.tags" ><a href="#" class="tag">{{tag}}</a></li>
-                            <li ng-repeat="atag in dotmark.atags"><a href="#" class="atag">{{atag}}</a></li>
+                            <li ng-repeat="tag in dotmark.tags" ><a href='#/dotmarks?tag={{tag}}' class="tag">{{tag}}</a></li>
+                            <!--
+                            <li ng-repeat="atag in dotmark.atags"><a href='#/dotmarks?atag={{atag}}' class="atag">{{atag}}</a></li>
+                            -->
                         </ul>
                     </div>
 
