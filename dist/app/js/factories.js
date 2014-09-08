@@ -26,8 +26,6 @@ angular.module('dotApp').factory('appaudit', ['$http', function($http){
 
 angular.module('dotApp').factory('api', ['$http', function($http) {
 
-
-
     return {
 
         getTags: function(params){
@@ -77,7 +75,6 @@ angular.module('dotApp').factory('api', ['$http', function($http) {
         },
         updateDotMark: function(dotmark) {
             log("updating " + dotmark._id);
-            log(dotmark);
             var config = {
                 headers: {
                     "Content-Type": "application/json",

@@ -27,6 +27,16 @@ function reduce(arr) {
 
 }
 
+function fixTags(string_tags){
+    var tags = new Array();
+
+    _.each(string_tags, function(el) {
+      var o = {};
+      o['tag'] = el;
+      tags.push(o);
+    });
+    return tags;
+}
 
 Date.prototype.yyyymmdd = function() {
    var yyyy = this.getFullYear().toString();
@@ -116,25 +126,21 @@ angular.module('dotApp').controller('terminalCtl', [
 
 }]);
 
+
 angular.module('dotApp').controller('dotMarkController',
     ['$scope', '$rootScope', '$location', 'api', 'appaudit', '$routeParams',
      function ($scope, $rootScope, $location, api, appaudit, $routeParams) {
 
     var callbackHandler = function(data){
+
         var elems = new Array();
-        var etags = new Array();
-        var atags = new Array();
         _.each(data._items, function(item){
+            item['array_tags'] = fixTags(item['tags']);
             elems.push(item);
-            atags.push.apply(atags, item.atags);
-            _.each(item.tags, function(tag) {
-                etags.push(tag.toLowerCase());
-            });
         });
 
+        log(elems);
         $scope.dotmarks = elems;
-        $scope.etags = reduce(etags);
-        $scope.atags = reduce(atags);
 
         var pagination = {};
         pagination.last = data._links.last;
@@ -179,32 +185,48 @@ angular.module('dotApp').controller('dotMarkController',
         });
     }
 
+    $scope.initNew = function(){
+        $scope.newDotMark = {};
+    }
+
+    $scope.populate = function(entry){
+        $scope.newDotMark = entry;
+        log($scope.newDotMark);
+    }
+
     $scope.addDotMark = function(){
         log("addDotMark");
+        var elem = {};
         log($scope.newDotMark);
-        var elem = {}
 
         if($scope.newDotMark.url!==undefined){
-            elem['url'] = $scope.newDotMark.url;
-            if($scope.newDotMark!==undefined){
-                elem['title'] = $scope.newDotMark.title;
-            }
-            var tags = $scope.newDotMark.tags.toLowerCase().split(" ");
-            if(tags.length >= 1){
-                if(tags[0].length > 1){
-                    elem['tags'] = tags;
+            if($scope.newDotMark.id !== undefined){
+                elem['url'] = $scope.newDotMark.url;
+                if($scope.newDotMark.title!==undefined){
+                    elem['title'] = $scope.newDotMark.title;
                 }
+                elem['tags'] = $scope.newDotMark.tags;
+                elem['source'] = "w";
+                api.saveDotMark(elem).success(function(data){
+                    log(data);
+                    $scope.refreshEntries();
+                });
+            }else{
+
+                // Update object
+                api.updateDotMark($scope.newDotMark).success(function(data){
+                    log(data);
+                    $scope.refreshEntries();
+                });
+
             }
-            api.saveDotMark(elem).success(function(data){
-                log(data);
-            });
+
         }else{
             return -1
         }
     }
 
-    var ttags = api.getTags().success(function(data){
-            log(data);
+    var paginated_tags = api.getTags().success(function(data){
             $scope.tags = data;
         });
 
@@ -217,7 +239,5 @@ angular.module('dotApp').controller('dotMarkController',
     }else{
         $scope.refreshEntries();
     }
-
-
   }]);
 
