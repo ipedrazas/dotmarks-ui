@@ -75,15 +75,27 @@ angular.module('dotApp').factory('api', ['$http', function($http) {
         },
         updateDotMark: function(dotmark) {
             log("updating " + dotmark._id);
+            var id = dotmark._id;
             var config = {
                 headers: {
                     "Content-Type": "application/json",
                     "X-HTTP-Method-Override": "PATCH",
+                    "If-Match": dotmark._etag
                 },
                 responseType: "application/json",
             };
+            delete dotmark._updated;
+            delete dotmark._created;
+            delete dotmark._links;
+            delete dotmark.array_tags;
+            delete dotmark._id;
+            // dotmark['etag'] = dotmark._etag;
+            delete dotmark._etag;
             // $http.defaults.headers.common['Authorization'] = 'Basic ' + localStorageService.get('token');
-            return $http.post(dotmarksUrl + "/" + dotmark._id, dotmark, config);
+            log(dotmarksUrl + "/" + id);
+            log(dotmark);
+            log(config);
+            return $http.put(dotmarksUrl + "/" + id, dotmark, config);
         }
     };
 }]);
