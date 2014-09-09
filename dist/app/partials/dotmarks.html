@@ -5,7 +5,7 @@
         <span class="title">dotMarks</span>
     </div>
     <div class="col-md-7 rightCol">
-
+        <div class="row">
             <form class="actionBar">
                 <span class="action searchbar" contenteditable="true" onclick="document.execCommand('selectAll',false,null)" typing >
                     ...start typing to search
@@ -47,34 +47,8 @@
                   </div>
                 </div>
               </div>
-            </div>
-
-    </div>
-    <div class="col-md-2 infoBox">
-            <span class="glyphicon glyphicon-stats stats pull-right "  ng-click="stats=!stats"></span>
-            <ul class="list-group" ng-show="stats">
-                <li class="list-group-item list-group-item-info"><strong>Total links:</strong> {{total_links}}</li>
-                <li class="list-group-item list-group-item-info"><strong>Total tags:</strong> {{total_tags}}</li>
-                <li class="list-group-item list-group-item-info"><strong>Last entry added:</strong> {{last_entry_added}}</li>
-            </ul>
+            </div> <!-- close adddotMark -->
         </div>
-    </div>
-<div class="row">
-    <div class="col-md-1">
-
-        <h2 class="sideSubTitle">Tags</h2>
-        <ul class="list-group" id="tagList">
-          <li ng-repeat="elem in tags._items">
-            <a href='#/dotmarks?tag={{elem._id}}' class="btn btn-info tag">
-                <span class="badge tagCount-info">{{elem.value}}</span>
-                {{elem._id}}
-            </a>
-          </li>
-        </ul>
-    </div>
-
-    <div class="col-md-10 rightCol">
-
         <div class="row">
             <ul class="pagination pagination-centered">
                 <li ng-if="pagination.prev" class="pagination previous"><a href="#{{pagination.prev.href}}">Prev</a></li>
@@ -116,6 +90,28 @@
                 <li ng-if="pagination.prev" class="previous"><a href="#{{pagination.prev.href}}">Prev</a></li>
                 <li ng-if="pagination.next" class="next"><a href="#{{pagination.next.href}}">Next</a></li>
                 <li ng-if="pagination.last" class="last pull-right"><a href="#{{pagination.last.href}}">Last</a></li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="col-md-2 infoBox">
+        <div class="row">
+            <span class="glyphicon glyphicon-stats sideActions pull-right "  ng-click="stats=!stats"></span>
+            <ul class="list-group pull-right " ng-show="stats">
+                <li class="list-group-item list-group-item-info"><strong>Total links:</strong> {{total_links}}</li>
+                <li class="list-group-item list-group-item-info"><strong>Total tags:</strong> {{total_tags}}</li>
+                <li class="list-group-item list-group-item-info"><strong>Last entry added:</strong> {{last_entry_added}}</li>
+            </ul>
+        </div>
+        <div class="row">
+            <span class="glyphicon glyphicon-tags sideActions pull-right" ng-click="displayTags=!displayTags"></span>
+            <ul class="list-group pull-right" id="tagList" ng-show="displayTags">
+              <li ng-repeat="elem in tags._items">
+                <a href='#/dotmarks?tag={{elem._id}}' class="btn btn-info tag">
+                    <span class="badge tagCount-info">{{elem.value}}</span>
+                    {{elem._id}}
+                </a>
+              </li>
             </ul>
         </div>
     </div>

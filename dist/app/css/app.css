@@ -59,6 +59,12 @@
   float: right;
   margin-left: 10px;
 }
+
+#tagList{
+  list-style: none;
+  margin-top: 25px;
+}
+
 #tagList li{
   margin-bottom: 5px;
   height: 32px;
@@ -193,10 +199,11 @@ h1, h2, h3 {
   color: rgb(109, 109, 109);
 }
 
-.stats{
+.sideActions{
   color: #428bca;
   font-size: 1.8em;
-
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 .dotLink{
