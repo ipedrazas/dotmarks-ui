@@ -38,6 +38,8 @@ function fixTags(string_tags){
     return tags;
 }
 
+function pad(s) { return (s < 10) ? '0' + s : s; }
+
 Date.prototype.yyyymmdd = function() {
    var yyyy = this.getFullYear().toString();
    var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
@@ -45,7 +47,24 @@ Date.prototype.yyyymmdd = function() {
    return yyyy + "/" + (mm[1]?mm:"0"+mm[0]) + "/" + (dd[1]?dd:"0"+dd[0]); // padding
   };
 
+Date.prototype.ddmmyyyy = function() {
+   var yyyy = this.getFullYear().toString();
+   var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
+   var dd  = this.getDate().toString();
+   return (dd[1]?dd:"0"+dd[0]) + "/" + (mm[1]?mm:"0"+mm[0]) + "/" + yyyy; // padding
+  };
 
+Date.prototype.dateTime = function() {
+   var yyyy = this.getFullYear().toString();
+   var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
+   var dd  = this.getDate().toString();
+   var hh = this.getHours().toString();
+   var min = this.getMinutes().toString();
+   var sec = this.getSeconds().toString();
+   var time = (hh[1]?hh:"0"+hh[0]) + ":" + (min[1]?min:"0"+min[0]) + ":" + (sec[1]?sec:"0"+sec[0]);
+   var date = (dd[1]?dd:"0"+dd[0]) + "/" + (mm[1]?mm:"0"+mm[0]) + "/" + yyyy;
+   return date + " " + time;
+  };
 
 /* Controllers */
 
@@ -135,6 +154,11 @@ angular.module('dotApp').controller('dotMarkController',
 
         log(data);
         var elems = new Array();
+        if(data._items.length > 0){
+            var d = new Date(data._items[0]._created);
+            $scope.last_entry_added = d.dateTime();
+        }
+
         _.each(data._items, function(item){
             item['array_tags'] = fixTags(item['tags']);
             elems.push(item);

@@ -1,35 +1,11 @@
-<div class="row">
-    <div class="col-md-1">
+<div class="row header">
+    <div class="col-md-2">
 
-    <!--
-        <a type="button" class="btn btn-primary" href="#/bulk_import">Import</a>
-        <a type="button" class="btn btn-primary" href="#/upload_html">Upload</a>
-    -->
-
-        <h2 class="sideSubTitle">Tags</h2>
-        <ul class="list-group" id="tagList">
-          <li ng-repeat="elem in tags._items">
-            <a href='#/dotmarks?tag={{elem._id}}' class="btn btn-info tag">
-                <span class="badge tagCount-info">{{elem.value}}</span>
-                {{elem._id}}
-            </a>
-          </li>
-        </ul>
-<!--
-        <h2 class="sideSubTitle">Categories</h2>
-        <ul class="list-group" id="tagList">
-          <li ng-repeat="elem in atags">
-            <a href='#/dotmarks?tag={{elem.label}}' class="btn btn-warning tag">
-                <span class="badge tagCount-warning">{{elem.count}}</span>
-                {{elem.label}}
-            </a>
-          </li>
-        </ul>
--->
+        <img src="/app/img/dotmarks-logo-header.png" alt="dotMarks logo" title="dotMarks"/>
+        <span class="title">dotMarks</span>
     </div>
+    <div class="col-md-7 rightCol">
 
-    <div class="col-md-10 rightCol">
-        <div class="row">
             <form class="actionBar">
                 <span class="action searchbar" contenteditable="true" onclick="document.execCommand('selectAll',false,null)" typing >
                     ...start typing to search
@@ -72,21 +48,55 @@
                 </div>
               </div>
             </div>
+
+    </div>
+    <div class="col-md-2 infoBox">
+
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-info"><strong>Total links:</strong> {{total_links}}</li>
+                <li class="list-group-item list-group-item-info"><strong>Total tags:</strong> {{total_tags}}</li>
+                <li class="list-group-item list-group-item-info"><strong>Last entry added:</strong> {{last_entry_added}}</li>
+            </ul>
         </div>
+    </div>
+<div class="row">
+    <div class="col-md-1">
+
+    <!--
+        <a type="button" class="btn btn-primary" href="#/bulk_import">Import</a>
+        <a type="button" class="btn btn-primary" href="#/upload_html">Upload</a>
+    -->
+
+        <h2 class="sideSubTitle">Tags</h2>
+        <ul class="list-group" id="tagList">
+          <li ng-repeat="elem in tags._items">
+            <a href='#/dotmarks?tag={{elem._id}}' class="btn btn-info tag">
+                <span class="badge tagCount-info">{{elem.value}}</span>
+                {{elem._id}}
+            </a>
+          </li>
+        </ul>
+<!--
+        <h2 class="sideSubTitle">Categories</h2>
+        <ul class="list-group" id="tagList">
+          <li ng-repeat="elem in atags">
+            <a href='#/dotmarks?tag={{elem.label}}' class="btn btn-warning tag">
+                <span class="badge tagCount-warning">{{elem.count}}</span>
+                {{elem.label}}
+            </a>
+          </li>
+        </ul>
+-->
+    </div>
+
+    <div class="col-md-10 rightCol">
+
         <div class="row">
             <ul class="pagination pagination-centered">
                 <li ng-if="pagination.prev" class="pagination previous"><a href="#{{pagination.prev.href}}">Prev</a></li>
                 <li ng-if="pagination.next" class="pagination next"><a href="#{{pagination.next.href}}">Next</a></li>
                 <li ng-if="pagination.last" class="pagination last"><a href="#{{pagination.last.href}}">Last</a></li>
             </ul>
-            <div class="pull-right infoBox">
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-info"><strong>Total links:</strong> {{total_links}}</li>
-                    <li class="list-group-item list-group-item-info"><strong>Total tags:</strong> {{total_tags}}</li>
-                </ul>
-
-
-            </div>
         </div>
 
         <div class="row">
