@@ -50,9 +50,11 @@
 }
 
 .tagCount-info{
-  background-color: #1A99C2;
+  background-color: rgba(66, 139, 202, 0.52);
   float: right;
-  margin-left: 10px;
+  margin-left: 30px;
+  font-size: 5px;
+
 }
 .tagCount-warning{
   background-color: #D67E01;
@@ -204,6 +206,10 @@ h1, h2, h3 {
   font-size: 1.8em;
   margin-top: 10px;
   margin-left: 10px;
+  border: 1px solid #428bca;
+  padding: 10px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
 }
 
 .dotLink{
@@ -213,4 +219,14 @@ h1, h2, h3 {
 .tagAction{
   color: rgb(177, 177, 177);
   font-size: 0.8em;
+}
+
+.tag-element{
+  color: #428bca;
+  border: 1px solid #85A9CA;
+  padding: 5px;
+  margin-left: 4px;
+  margin-right: 4px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
 }

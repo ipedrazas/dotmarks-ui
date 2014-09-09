@@ -7,47 +7,14 @@
     <div class="col-md-7 rightCol">
         <div class="row">
             <form class="actionBar">
-                <span class="action searchbar" contenteditable="true" onclick="document.execCommand('selectAll',false,null)" typing >
-                    ...start typing to search
-                </span>
-                <span  class="glyphicon glyphicon-plus action adddotMark" data-toggle="modal" data-target="#adddotMark" ng-click="initNew()"></span>
-            </form>
-            <div class="modal fade" id="adddotMark" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="myModalLabel">dotMark Details</h4>
-                  </div>
-                  <div class="modal-body">
-                    <form role="form">
-                        <div class="form-group">
-                            <div class="input-group-lg">
-                              <label >Title</label>
-                              <input type="text" class="form-control" placeholder="Title" ng-model="newDotMark.title">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group-lg">
-                            <label >Url</label>
-                              <input type="text" class="form-control" placeholder="Url" ng-model="newDotMark.url">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group-lg">
-                              <label >Tags</label>
-                              <input type="text" class="form-control" placeholder="Tags, space separated" ng-model="newDotMark.tags" ng-list=", ">
-                            </div>
-                        </div>
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" ng-click="addDotMark()" data-dismiss="modal">Save changes</button>
-                  </div>
-                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+                      <input class="form-control" type="search" placeholder="Search"  typing>
+                    </div>
               </div>
-            </div> <!-- close adddotMark -->
+
+            </form>
         </div>
         <div class="row">
             <ul class="pagination pagination-centered">
@@ -96,23 +63,85 @@
     </div>
     <div class="col-md-2 infoBox">
         <div class="row">
-            <span class="glyphicon glyphicon-stats sideActions pull-right "  ng-click="stats=!stats"></span>
-            <ul class="list-group pull-right " ng-show="stats">
-                <li class="list-group-item list-group-item-info"><strong>Total links:</strong> {{total_links}}</li>
-                <li class="list-group-item list-group-item-info"><strong>Total tags:</strong> {{total_tags}}</li>
-                <li class="list-group-item list-group-item-info"><strong>Last entry added:</strong> {{last_entry_added}}</li>
-            </ul>
+            <span  class="glyphicon glyphicon-plus sideActions pull-right adddotMark" data-toggle="modal" data-target="#adddotMark" ng-click="initNew()"></span>
+            <div class="modal fade" id="adddotMark" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">dotMark Details</h4>
+                      </div>
+                      <div class="modal-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <div class="input-group-lg">
+                                  <label >Title</label>
+                                  <input type="text" class="form-control" placeholder="Title" ng-model="newDotMark.title">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group-lg">
+                                <label >Url</label>
+                                  <input type="text" class="form-control" placeholder="Url" ng-model="newDotMark.url">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group-lg">
+                                  <label >Tags</label>
+                                  <input type="text" class="form-control" placeholder="Tags, space separated" ng-model="newDotMark.tags" ng-list=", ">
+                                </div>
+                            </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" ng-click="addDotMark()" data-dismiss="modal">Save changes</button>
+                      </div>
+                    </div>
+                </div>
+            </div> <!-- close adddotMark -->
         </div>
         <div class="row">
-            <span class="glyphicon glyphicon-tags sideActions pull-right" ng-click="displayTags=!displayTags"></span>
-            <ul class="list-group pull-right" id="tagList" ng-show="displayTags">
-              <li ng-repeat="elem in tags._items">
-                <a href='#/dotmarks?tag={{elem._id}}' class="btn btn-info tag">
-                    <span class="badge tagCount-info">{{elem.value}}</span>
-                    {{elem._id}}
-                </a>
-              </li>
-            </ul>
+            <span class="glyphicon glyphicon-stats sideActions pull-right "  data-toggle="modal" data-target="#statistics"></span>
+             <div class="modal fade" id="statistics" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Statistics</h4>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="list-group" >
+                                <li class="list-group-item list-group-item-info"><strong>Total links:</strong> {{total_links}}</li>
+                                <li class="list-group-item list-group-item-info"><strong>Total tags:</strong> {{total_tags}}</li>
+                                <li class="list-group-item list-group-item-info"><strong>Last entry added:</strong> {{last_entry_added}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- close tagsList -->
+        </div>
+        <div class="row">
+            <span class="glyphicon glyphicon-tags sideActions pull-right"  data-toggle="modal" data-target="#tagsList"></span>
+
+            <div class="modal fade" id="tagsList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Tags</h4>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="list-inline"  >
+                              <li ng-repeat="elem in tags._items" class="tag-element">
+                                    <span class="glyphicon glyphicon-tag"></span> <span class="badge tagCount-info" ng-click="getByTag({{elem._id}})">{{elem.value}}</span>
+                                    {{elem._id}}
+                              </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- close tagsList -->
         </div>
     </div>
 </div>
