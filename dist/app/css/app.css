@@ -119,10 +119,14 @@
   margin-top: 10px;
 }
 
+.dotActions{
+  margin-left: 15px;
+  margin-top: 5px;
+}
 .dotAction{
-  font-size: 1.3em;
-  margin-left: 20px;
-  margin-top: 10px;
+  font-size: 1.0em;
+  cursor: pointer;
+  color: #428bca;
 }
 .terminal{
   width: 800px;

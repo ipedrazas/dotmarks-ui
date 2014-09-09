@@ -79,9 +79,14 @@
                 <li ng-if="pagination.next" class="pagination next"><a href="#{{pagination.next.href}}">Next</a></li>
                 <li ng-if="pagination.last" class="pagination last"><a href="#{{pagination.last.href}}">Last</a></li>
             </ul>
-            <!--
-<span  class="glyphicon glyphicon-plus " ng-click="add_link=!add_link">Add new Url</span> <span class="searchbar" contenteditable="true" onclick="document.execCommand('selectAll',false,null)" ng-show="add_link" >Add a new url</span>
--->
+            <div class="pull-right infoBox">
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-info"><strong>Total links:</strong> {{total_links}}</li>
+                    <li class="list-group-item list-group-item-info"><strong>Total tags:</strong> {{total_tags}}</li>
+                </ul>
+
+
+            </div>
         </div>
 
         <div class="row">
@@ -92,9 +97,9 @@
                     <span class="num_views" ng-if="dotmark.views">{{dotmark.views}}</span>  <a href="{{dotmark.url}}" class="dotAction" target="_blank">{{dotmark.url}}</a>
                 <div class="dotMarkData row">
                     <div class="dotActions left ">
-                        <span class="glyphicon glyphicon-star-empty " ng-click="starDotMark(dotmark._id, true)" ng-hide="dotmark.star"></span>
-                        <span class="glyphicon glyphicon-star " ng-click="starDotMark(dotmark._id, false)" ng-show="dotmark.star"></span>
-                        <span class="glyphicon glyphicon-pencil "  data-toggle="modal" data-target="#adddotMark" ng-click="populate(dotmark)"></span>
+                        <span class="glyphicon glyphicon-star-empty dotAction " ng-click="starDotMark(dotmark._id, true)" ng-hide="dotmark.star"></span>
+                        <span class="glyphicon glyphicon-star dotAction " ng-click="starDotMark(dotmark._id, false)" ng-show="dotmark.star"></span>
+                        <span class="glyphicon glyphicon-pencil dotAction "  data-toggle="modal" data-target="#adddotMark" ng-click="populate(dotmark)"></span>
 
                         <ul class="list-inline tags right ">
                             <li ng-repeat="elem in dotmark.array_tags" >
@@ -113,7 +118,6 @@
                 <li ng-if="pagination.next" class="next"><a href="#{{pagination.next.href}}">Next</a></li>
                 <li ng-if="pagination.last" class="last pull-right"><a href="#{{pagination.last.href}}">Last</a></li>
             </ul>
-
         </div>
     </div>
 </div>

@@ -133,6 +133,7 @@ angular.module('dotApp').controller('dotMarkController',
 
     var callbackHandler = function(data){
 
+        log(data);
         var elems = new Array();
         _.each(data._items, function(item){
             item['array_tags'] = fixTags(item['tags']);
@@ -141,6 +142,7 @@ angular.module('dotApp').controller('dotMarkController',
 
         log(elems);
         $scope.dotmarks = elems;
+        $scope.total_links = data._meta.total;
 
         var pagination = {};
         pagination.last = data._links.last;
@@ -228,6 +230,7 @@ angular.module('dotApp').controller('dotMarkController',
 
     var paginated_tags = api.getTags().success(function(data){
             $scope.tags = data;
+            $scope.total_tags = data._meta.total;
         });
 
 

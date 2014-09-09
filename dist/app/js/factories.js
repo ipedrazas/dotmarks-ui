@@ -34,7 +34,7 @@ angular.module('dotApp').factory('api', ['$http', function($http) {
         },
 
         getDotMarksEntries: function(params) {
-            var dest = dotmarksUrl + '?sort=[("views",-1),("_updated",-1)]&d=' + Date.now();
+            var dest = dotmarksUrl + '?sort=[("_updated",-1)]&d=' + Date.now();
             if(params.page !== undefined){
                 return $http.get(dest + "&page=" + params.page);
             }else{
