@@ -229,4 +229,5 @@ h1, h2, h3 {
   margin-right: 4px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
+  cursor: pointer;
 }

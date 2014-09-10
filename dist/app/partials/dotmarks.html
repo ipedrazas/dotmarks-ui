@@ -133,8 +133,8 @@
                         </div>
                         <div class="modal-body">
                             <ul class="list-inline"  >
-                              <li ng-repeat="elem in tags._items" class="tag-element">
-                                    <span class="glyphicon glyphicon-tag"></span> <span class="badge tagCount-info" ng-click="getByTag({{elem._id}})">{{elem.value}}</span>
+                              <li ng-repeat="elem in tags._items" class="tag-element" ng-click="getByTag(elem._id)">
+                                    <span class="glyphicon glyphicon-tag"></span> <span class="badge tagCount-info" >{{elem.value}}</span>
                                     {{elem._id}}
                               </li>
                             </ul>

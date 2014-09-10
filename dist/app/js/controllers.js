@@ -166,7 +166,9 @@ angular.module('dotApp').controller('dotMarkController',
 
         log(elems);
         $scope.dotmarks = elems;
-        $scope.total_links = data._meta.total;
+        if(data._meta.total !== undefined){
+            $scope.total_links = data._meta.total;
+        }
 
         var pagination = {};
         pagination.last = data._links.last;
@@ -180,8 +182,9 @@ angular.module('dotApp').controller('dotMarkController',
         api.getDotMarksEntries($routeParams).success(callbackHandler);
     };
 
-    $scope.getTags = function(){
-        api.getDotMarksByTag($routeParams.tag).success(callbackHandler);
+    $scope.getByTag = function(tag){
+        api.getDotMarksByTag(tag).success(callbackHandler);
+        $('#tagsList').modal('hide');
     };
 
     $scope.searchDotMarks = function(query){
@@ -260,7 +263,7 @@ angular.module('dotApp').controller('dotMarkController',
 
 
     if($routeParams.tag !== undefined){
-        $scope.getTags();
+        $scope.getByTag($routeParams.tag);
     }else if($routeParams.id !== undefined){
         $scope.editDotMark($routeParams.id);
     }else{
