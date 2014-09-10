@@ -10,7 +10,7 @@
                 <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
-                      <input class="form-control" type="search" placeholder="Search"  typing>
+                      <input class="form-control" type="search" placeholder="Search"  ng-model="q" ng-keyup="searchDotMarks()">
                     </div>
               </div>
 
@@ -25,6 +25,9 @@
         </div>
 
         <div class="row">
+            <div class="alert alert-warning" role="alert" ng-show="noresults">
+              <strong>No results!</strong> Perhaps you should try searching a different term.
+            </div>
             <div ng-repeat="dotmark in dotmarks">
                 <span class="glyphicon glyphicon-star-empty dotAction " ng-click="starDotMark(dotmark._id, true)" ng-hide="dotmark.star"></span>
                         <span class="glyphicon glyphicon-star dotAction " ng-click="starDotMark(dotmark._id, false)" ng-show="dotmark.star"></span>

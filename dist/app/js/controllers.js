@@ -165,8 +165,15 @@ angular.module('dotApp').controller('dotMarkController',
         });
 
         log(elems);
-        $scope.dotmarks = elems;
-        if(data._meta.total !== undefined){
+        if(elems.length > 0){
+            $scope.dotmarks = elems;
+            $scope.noresults = false;
+        }else{
+            $scope.noresults = true;
+            $scope.dotmarks = [];
+        }
+
+        if(data._meta !== undefined){
             $scope.total_links = data._meta.total;
         }
 
@@ -187,8 +194,10 @@ angular.module('dotApp').controller('dotMarkController',
         $('#tagsList').modal('hide');
     };
 
-    $scope.searchDotMarks = function(query){
-        api.searchDotMarks(query).success(callbackHandler);
+    $scope.searchDotMarks = function(){
+        if($scope.q.length > 2){
+            api.searchDotMarks($scope.q).success(callbackHandler);
+        }
     };
 
     $scope.starDotMark = function(id, star){
