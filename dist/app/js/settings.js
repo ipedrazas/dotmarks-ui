@@ -7,7 +7,7 @@ var authUrl = BASE_URL + "users/";
 var mediaUrl = BASE_URL + "attachments/";
 
 
-
+var DEBUG = true;
 
 var config = {
     headers: {

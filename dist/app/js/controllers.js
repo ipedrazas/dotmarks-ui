@@ -1,8 +1,10 @@
 'use strict';
 
 function log(entry){
-    if( console && console.log ) {
+    if(DEBUG){
+        if( console && console.log ) {
             console.log(entry);
+        }
     }
 }
 
