@@ -42,20 +42,6 @@ function fixTags(string_tags){
 
 function pad(s) { return (s < 10) ? '0' + s : s; }
 
-Date.prototype.yyyymmdd = function() {
-   var yyyy = this.getFullYear().toString();
-   var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
-   var dd  = this.getDate().toString();
-   return yyyy + "/" + (mm[1]?mm:"0"+mm[0]) + "/" + (dd[1]?dd:"0"+dd[0]); // padding
-  };
-
-Date.prototype.ddmmyyyy = function() {
-   var yyyy = this.getFullYear().toString();
-   var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
-   var dd  = this.getDate().toString();
-   return (dd[1]?dd:"0"+dd[0]) + "/" + (mm[1]?mm:"0"+mm[0]) + "/" + yyyy; // padding
-  };
-
 Date.prototype.dateTime = function() {
    var yyyy = this.getFullYear().toString();
    var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
@@ -175,9 +161,10 @@ angular.module('dotApp').controller('dotMarkController',
             $scope.dotmarks = [];
         }
 
-        if(data._meta !== undefined){
-            $scope.total_links = data._meta.total;
+        if(data.total !== undefined){
+            $scope.total_links = data.total;
         }
+
 
         var pagination = {};
         pagination.last = data._links.last;
