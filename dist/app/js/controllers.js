@@ -161,10 +161,11 @@ angular.module('dotApp').controller('dotMarkController',
             $scope.dotmarks = [];
         }
 
-        if(data.total !== undefined){
-            $scope.total_links = data.total;
+        if(data._meta !== undefined){
+            if(data._meta.total !== undefined){
+                $scope.total_links = data._meta.total;
+            }
         }
-
 
         var pagination = {};
         pagination.last = data._links.last;
@@ -255,7 +256,7 @@ angular.module('dotApp').controller('dotMarkController',
 
     var paginated_tags = api.getTags().success(function(data){
             $scope.tags = data;
-            $scope.total_tags = data._meta.total;
+            $scope.total_tags = data.total;
         });
 
 
