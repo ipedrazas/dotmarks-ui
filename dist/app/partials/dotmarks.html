@@ -35,7 +35,7 @@
                     <a href="{{dotmark.url}}"  target="_blank" class="linkTitle">{{dotmark.title}}</a>
                 </span>
                 <br/>
-                <a href="{{dotmark.url}}" class="dotAction dotLink" target="_blank">{{dotmark.url}}</a>  -- updated {{dotmark._updated}}
+                <a href="{{dotmark.url}}" class="dotAction dotLink" target="_blank">{{dotmark.url}}</a>
 
                 <span class="num_views" ng-if="dotmark.views">{{dotmark.views}}</span>
 
@@ -50,7 +50,10 @@
                             </li>
 
                         </ul>
+                        <span class="pull-right glyphicon glyphicon-time">{{dotmark._updated}}</span>
                     </div>
+
+
 
                 </div>
             </div>
