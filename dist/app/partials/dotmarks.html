@@ -40,7 +40,10 @@
                 <span class="num_views" ng-if="dotmark.views">{{dotmark.views}}</span>
 
                 <div class="dotMarkData row">
-                    <div class="dotActions left col-md-7">
+                    <div class="col-md-3 left">
+                        <span class="tag pull-right glyphicon glyphicon-time"> {{dotmark.date}}</span>
+                    </div>
+                    <div class="dotActions right col-md-7">
                         <ul class="list-inline right ">
                             <li ng-repeat="elem in dotmark.array_tags" >
                                 <a href='#/dotmarks?tag={{elem.tag}}' class="tag"><span class="glyphicon glyphicon-tag"></span>  {{elem.tag}}</a>
@@ -49,9 +52,6 @@
                                 <span class="glyphicon glyphicon-pencil dotLink tagAction tag"  data-toggle="modal" data-target="#adddotMark" ng-click="populate(dotmark)"></span>
                             </li>
                         </ul>
-                    </div>
-                    <div class="col-md-3 right">
-                        <span class="tag pull-right glyphicon glyphicon-time"> {{dotmark.date}}</span>
                     </div>
                 </div>
             </div>
