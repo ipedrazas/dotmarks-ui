@@ -46,11 +46,11 @@
                                 <a href='#/dotmarks?tag={{elem.tag}}' class="tag"><span class="glyphicon glyphicon-tag"></span>  {{elem.tag}}</a>
                             </li>
                             <li>
-                                <span class="glyphicon glyphicon-pencil dotLink tagAction"  data-toggle="modal" data-target="#adddotMark" ng-click="populate(dotmark)"></span>
+                                <span class="glyphicon glyphicon-pencil dotLink tagAction tag"  data-toggle="modal" data-target="#adddotMark" ng-click="populate(dotmark)"></span>
                             </li>
 
                         </ul>
-                        <span class="pull-right glyphicon glyphicon-time">{{dotmark._updated}}</span>
+                        <span class="tag pull-right glyphicon glyphicon-time"> {{dotmark.date}}</span>
                     </div>
 
 

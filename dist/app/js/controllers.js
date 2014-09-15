@@ -149,6 +149,7 @@ angular.module('dotApp').controller('dotMarkController',
 
         _.each(data._items, function(item){
             item['array_tags'] = fixTags(item['tags']);
+            item['date'] = (new Date(item['_updated'])).dateTime();
             elems.push(item);
         });
 
