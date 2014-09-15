@@ -34,11 +34,7 @@
   color: rgb(138, 132, 132);
   margin-bottom: 5px;
   padding: 3px;
-  padding-right: 9px;
-  padding-left: 9px;
   font-size: 0.6em;
-  -moz-border-radius: 7px;
-  border-radius: 7px;
 }
 
 .urlTitle{
