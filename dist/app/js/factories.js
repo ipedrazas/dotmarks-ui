@@ -61,7 +61,7 @@ angular.module('dotApp').factory('api', ['$http', function($http) {
                 },
                 responseType: "application/json",
             };
-            var filter = "?where={\"$or\":[{\"tags\":\"" + tag + "\"},{\"atags\":\"" +  tag + "\"}]}";
+            var filter = "?sort=[("_updated",-1)]&where={\"$or\":[{\"tags\":\"" + tag + "\"},{\"atags\":\"" +  tag + "\"}]}";
             return $http.get(dotmarksUrl + filter, config);
 
         },
