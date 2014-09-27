@@ -88,6 +88,7 @@ angular.module('dotApp').factory('api', ['$http', function($http) {
             delete dotmark._created;
             delete dotmark._links;
             delete dotmark.array_tags;
+            delete dotmark.date;
             delete dotmark._id;
             // dotmark['etag'] = dotmark._etag;
             delete dotmark._etag;
