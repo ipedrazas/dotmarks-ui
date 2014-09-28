@@ -73,8 +73,9 @@ angular.module('dotApp').factory('api', ['$http', function($http) {
         getDotMark: function(id){
             return $http.get(dotmarksUrl + "/" + id);
         },
+
         updateDotMark: function(dotmark) {
-            log("updating " + dotmark._id);
+
             var id = dotmark._id;
             var config = {
                 headers: {
@@ -93,9 +94,6 @@ angular.module('dotApp').factory('api', ['$http', function($http) {
             // dotmark['etag'] = dotmark._etag;
             delete dotmark._etag;
             // $http.defaults.headers.common['Authorization'] = 'Basic ' + localStorageService.get('token');
-            log(dotmarksUrl + "/" + id);
-            log(dotmark);
-            log(config);
             return $http.put(dotmarksUrl + "/" + id, dotmark, config);
         }
     };

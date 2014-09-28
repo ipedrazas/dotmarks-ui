@@ -140,7 +140,7 @@ angular.module('dotApp').controller('dotMarkController',
 
     var callbackHandler = function(data){
 
-        log(data);
+
         var elems = new Array();
         if(data._items.length > 0){
             var d = new Date(data._items[0]._created);
@@ -153,7 +153,6 @@ angular.module('dotApp').controller('dotMarkController',
             elems.push(item);
         });
 
-        log(elems);
         if(elems.length > 0){
             $scope.dotmarks = elems;
             $scope.noresults = false;
@@ -226,10 +225,9 @@ angular.module('dotApp').controller('dotMarkController',
     $scope.addDotMark = function(){
         log("addDotMark");
         var elem = {};
-        log($scope.newDotMark);
 
-        if($scope.newDotMark.url!==undefined){
-            if($scope.newDotMark.id !== undefined){
+        if($scope.newDotMark.url!== undefined){
+            if($scope.newDotMark.id === undefined){
                 elem['url'] = $scope.newDotMark.url;
                 if($scope.newDotMark.title!==undefined){
                     elem['title'] = $scope.newDotMark.title;
