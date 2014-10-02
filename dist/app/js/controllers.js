@@ -219,15 +219,12 @@ angular.module('dotApp').controller('dotMarkController',
 
     $scope.populate = function(entry){
         $scope.newDotMark = entry;
-        log($scope.newDotMark);
     }
 
     $scope.addDotMark = function(){
-        log("addDotMark");
         var elem = {};
-
-        if($scope.newDotMark.url!== undefined){
-            if($scope.newDotMark.id === undefined){
+        if($scope.newDotMark.url !== undefined){
+            if($scope.newDotMark._id === undefined){
                 elem['url'] = $scope.newDotMark.url;
                 if($scope.newDotMark.title!==undefined){
                     elem['title'] = $scope.newDotMark.title;
@@ -235,17 +232,15 @@ angular.module('dotApp').controller('dotMarkController',
                 elem['tags'] = $scope.newDotMark.tags;
                 elem['source'] = "w";
                 api.saveDotMark(elem).success(function(data){
-                    log(data);
                     $scope.refreshEntries();
                 });
+                log("Add " + newDotMark.id);
             }else{
 
                 // Update object
                 api.updateDotMark($scope.newDotMark).success(function(data){
-                    log(data);
                     $scope.refreshEntries();
                 });
-
             }
 
         }else{
