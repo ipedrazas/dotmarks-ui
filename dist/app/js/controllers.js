@@ -34,7 +34,7 @@ function fixTags(string_tags){
 
     _.each(string_tags, function(el) {
       var o = {};
-      o['tag'] = el;
+      o['tag'] = el.trim();
       tags.push(o);
     });
     return tags;
