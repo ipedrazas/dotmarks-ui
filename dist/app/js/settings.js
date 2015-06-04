@@ -1,4 +1,4 @@
-var BASE_URL = "https://api.dotmarks.net/";
+var BASE_URL = "http://api.dotmarks.net/";
 
 var TAGS_URL = BASE_URL + "tags";
 var dotmarksUrl = BASE_URL + "dotmarks";
